@@ -17,9 +17,15 @@ def are_numbers_equal(num, verbose=False):
     return False
 
 
-def did_direction_change(num1, num2):
+def did_direction_change(num1, num2, verbose=False):
     """Will return True if the numbers are on opposite sides of zero."""
-    return (num1 * num2) < 0
+    direction_changed = (num1 * num2) < 0
+
+    if verbose and direction_changed:
+        print('ERROR: direction changed')
+
+    return direction_changed
+
 
 def is_safe(record, verbose=False):
     previous_direction = record[0] - record[1]
@@ -36,9 +42,7 @@ def is_safe(record, verbose=False):
         if are_numbers_equal(difference, verbose=verbose):
             return False
 
-        if did_direction_change(previous_direction, difference):
-            if verbose:
-                print('ERROR: direction changed')
+        if did_direction_change(previous_direction, difference, verbose=verbose):
             return False
 
         previous_direction = difference
@@ -59,6 +63,7 @@ def read_file(filename, verbose=False):
                 print('***************************************************')
                 print()
                 print('analyzing record:', record)
+
             if is_safe(record, verbose):
                 safe_count += 1
                 if verbose:
@@ -87,7 +92,7 @@ def problem_dampener(record):
 
 
 def main():
-    read_file('input.txt', verbose=False)
+    read_file('input.txt', verbose=True)
 
 
 if __name__ == "__main__":
