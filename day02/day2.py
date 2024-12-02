@@ -1,11 +1,4 @@
-data = [
-    [7, 6, 4, 2, 1],  # Safe
-    [1, 2, 7, 8, 9],  # Not Safe
-    [9, 7, 6, 2, 1],  # Not Safe
-    [1, 3, 2, 4, 5],  # Not Safe
-    [8, 6, 4, 4, 1],  # Not Safe
-    [1, 3, 6, 7, 9],  # Safe
-]
+# Advent of Code 2024 Day 2
 
 
 def is_safe(record, verbose=False):
