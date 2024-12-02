@@ -46,28 +46,49 @@ def is_safe(record, verbose=False):
     return True
 
 
-def main():
-
+def read_file(filename, verbose=False):
     total_count = 0
     safe_count = 0
 
-    with open('input2.txt', 'r') as file:
+    with open(filename, 'r') as file:
         for record in file:
             record = [int(x) for x in record.split()]
             total_count += 1
 
-            print('***************************************************')
-            print()
-            print('analyzing record:', record)
-            if is_safe(record, verbose=True):
+            if verbose:
+                print('***************************************************')
+                print()
+                print('analyzing record:', record)
+            if is_safe(record, verbose):
                 safe_count += 1
-                print('SAFE')
+                if verbose:
+                    print('SAFE')
             else:
-                print('NOT SAFE')
-            print()
+                if problem_dampener(record):
+                    safe_count += 1
+                if verbose:
+                    print('NOT SAFE')
+
+            if verbose:
+                print()
 
     print('total records: ', total_count)
     print('safe records: ', safe_count)
+
+
+def problem_dampener(record):
+    """Retry failing records by removing a single level."""
+    for i, r in enumerate(record):
+        new_record = record.copy()
+        del new_record[i]
+        if is_safe(new_record):
+            return True
+    return False
+
+
+def main():
+    read_file('input.txt', verbose=False)
+
 
 if __name__ == "__main__":
     main()
