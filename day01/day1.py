@@ -20,6 +20,7 @@ def sum_difference(list1, list2):
 def read_file(filename, verbose=False):
     list1 = []
     list2 = []
+
     with open(filename, 'r') as file:
         for record in file:
             record = [int(x) for x in record.split()]
