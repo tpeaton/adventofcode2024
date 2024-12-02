@@ -45,11 +45,23 @@ def is_safe(record, verbose=False):
 
 
 def main():
-    for row in data:
-        print('analyzing row:', row)
-        print('safe row:', is_safe(row))
-        print()
+    total_count = 0
+    safe_count = 0
 
+    with open('input.txt', 'r') as file:
+        for record in file:
+            record = [int(x) for x in record.split()]
+            total_count += 1
+
+            print('analyzing record:', record)
+            if is_safe(record, verbose=False):
+                safe_count += 1
+                print('SAFE')
+            else:
+                print('NOT SAFE')
+
+    print('total records: ', total_count)
+    print('safe records: ', safe_count)
 
 if __name__ == "__main__":
     main()
