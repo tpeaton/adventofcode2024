@@ -3,15 +3,26 @@
 import re
 
 
-pattern = r'mul\(\d+,\d+\)'
+pattern = r"don't\(\)|do\(\)|mul\(\d+,\d+\)"
+STOP_WORD = "don't()"
+START_WORD = "do()"
 
 
 def multiply_and_add(data):
+    STOP = False
     total = 0
+
     for line in data:
-        for equation in line:
-            factors = re.findall(r'\d+', equation)
-            total += int(factors[0]) * int(factors[1])
+        for instruction in line:
+            if instruction == STOP_WORD:
+                STOP = True
+            if instruction == START_WORD:
+                STOP = False
+                continue
+
+            if not STOP:
+                factors = re.findall(r'\d+', instruction)
+                total += int(factors[0]) * int(factors[1])
 
     return total
 
