@@ -10,18 +10,18 @@ pattern = r"don't\(\)|do\(\)|mul\(\d+,\d+\)"
 
 
 def multiply_and_add(data):
-    STOP = False
+    stopped = False
     total = 0
 
     for line in data:
         for instruction in line:
             if instruction == STOP_WORD:
-                STOP = True
+                stopped = True
             if instruction == START_WORD:
-                STOP = False
+                stopped = False
                 continue
 
-            if not STOP:
+            if not stopped:
                 factors = re.findall(r'\d+', instruction)
                 total += int(factors[0]) * int(factors[1])
 
