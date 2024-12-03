@@ -2,10 +2,11 @@
 
 import re
 
-
-pattern = r"don't\(\)|do\(\)|mul\(\d+,\d+\)"
 STOP_WORD = "don't()"
 START_WORD = "do()"
+
+
+pattern = r"don't\(\)|do\(\)|mul\(\d+,\d+\)"
 
 
 def multiply_and_add(data):
