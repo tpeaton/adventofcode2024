@@ -6,9 +6,6 @@ STOP_WORD = "don't()"
 START_WORD = "do()"
 
 
-pattern = r"don't\(\)|do\(\)|mul\(\d+,\d+\)"
-
-
 def multiply_and_add(data):
     stopped = False
     total = 0
@@ -30,8 +27,9 @@ def multiply_and_add(data):
 
 def filter_input(data):
     matches = []
+
     for line in data:
-        matches.append(re.findall(pattern, line))
+        matches.append(re.findall(r"don't\(\)|do\(\)|mul\(\d+,\d+\)", line))
 
     return matches
 
