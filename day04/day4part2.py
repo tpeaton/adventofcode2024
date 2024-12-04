@@ -29,7 +29,7 @@ def is_x_mas(data, a_row, a_col):
     return False
 
 
-def count_x_max(data):
+def count_x_mas(data):
     total = 0
 
     for i, row in enumerate(data):
@@ -53,7 +53,7 @@ def read_file(filename):
 
 def main():
     data = read_file('input2.txt')
-    print('total: ', count_x_max(data))
+    print('total: ', count_x_mas(data))
 
 
 if __name__ == "__main__":
